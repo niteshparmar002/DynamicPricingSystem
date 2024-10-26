@@ -3,37 +3,37 @@ from .models import *
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name','price']
-    list_display = ['name']
+    search_fields = ['name']
 
 class SeasonalProductAdmin(admin.ModelAdmin):
     list_display = ['name','price','rate']
-    list_display = ['name']
+    search_fields = ['name']
 
 class BulkProductAdmin(admin.ModelAdmin):
     list_display = ['name','price','rate','threshold']
-    list_display = ['name']
+    search_fields = ['name']
 
 class DiscountAdmin(admin.ModelAdmin):
     list_display = ['title']
-    list_display = ['title']
+    search_fields = ['title']
 
 class PercentageDiscountAdmin(admin.ModelAdmin):
     list_display = ['title','rate']
-    list_display = ['title']
+    search_fields = ['title']
 
 class FixedAmountDiscountAdmin(admin.ModelAdmin):
-    list_display = ['title','rate']
-    list_display = ['title']
+    list_display = ['title','amount']
+    search_fields = ['title']
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['product','discount','quantity']
-    list_display = ['product__name','discount__title']
+    search_fields = ['product__name','discount__title']
     autocomplete_fields = ['product','discount']
 
-admin.site.register(Product)
-admin.site.register(SeasonalProduct)
-admin.site.register(BulkProduct)
-admin.site.register(Discount)
-admin.site.register(PercentageDiscount)
-admin.site.register(FixedAmountDiscount)
-admin.site.register(Order)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(SeasonalProduct, SeasonalProductAdmin)
+admin.site.register(BulkProduct, BulkProductAdmin)
+admin.site.register(Discount, DiscountAdmin)
+admin.site.register(PercentageDiscount, PercentageDiscountAdmin)
+admin.site.register(FixedAmountDiscount, FixedAmountDiscountAdmin)
+admin.site.register(Order, OrderAdmin)
