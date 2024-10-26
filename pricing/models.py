@@ -4,8 +4,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-    def get_price(self):
-        return self.price
+    def get_price(self, quantity=1):
+        return self.price * quantity
 
     def __str__(self):
         return f"{self.name} - ${self.price}"
